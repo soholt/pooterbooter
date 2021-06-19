@@ -1,0 +1,6 @@
+#!/bin/sh
+# Change to 0.0.0.0:3000 # for it to be accessable from local lan
+# Then http:// ip address of the server:port
+# If firewalled by ufw, run sudo ufw allow 3000/tcp
+#php -S 127.0.0.1:3000
+php -S 0.0.0.0:3000
