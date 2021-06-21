@@ -190,11 +190,11 @@ function pxeMenuMake(&$data) {
     #$foot .= "\n\tMENU LABEL Memtest86+";
     #$foot .= "\n\tKERNEL memtest";
 
-    $foot .= "\n\nLABEL memdisk";
-    $foot .= "\n\tMENU LABEL memdisk";
-    $foot .= "\n\tKERNEL memdisk";
-    $foot .= "\n\tINITRD ::mnt/Fedora-Workstation-Live-x86_64-34-1.2.iso/";
-    $foot .= "\n\tAPPEND iso raw";
+    #$foot .= "\n\nLABEL memdisk";
+    #$foot .= "\n\tMENU LABEL memdisk";
+    #$foot .= "\n\tKERNEL memdisk";
+    #$foot .= "\n\tINITRD ::mnt/Fedora-Workstation-Live-x86_64-34-1.2.iso/";
+    #$foot .= "\n\tAPPEND iso raw";
 
     # serial # https://alexforencich.com/wiki/en/linux/diskless_pxe_nfs
     #$foot .= "\n\nLABEL memtest-console";
