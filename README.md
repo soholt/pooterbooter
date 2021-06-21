@@ -9,6 +9,7 @@ Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe o
 * Tested and works with archlinux, clonezilla, ubuntu server
 * Ubuntu desktop/studio RAM: 3Gb=crash, 6Gb=Ok*
 * Archlinux boots in 4min from Raspberry Pi1, ubuntu slow to dowload via 100Mb network
+* Archlonux boot Gigabit lan 1min15sec, Pi4 should be similar
 * TODO: Debian, Fedora and others
 * TODO: Raspberry Pi boot
 * TODO: EFI64 & EFI32 boot + arch
@@ -54,7 +55,7 @@ The rest can be done remotly
 * To restart a service/after reconfig `systemctl restart SERVICE_NAME_FROM_ABOVE`
 
 ## Dev/debug
-* For realtime happenings run ./logDnsmasq ./logNginxAccess ./logNginxError etc files
+* For realtime happenings run `./logDnsmasq` `./logNginxAccess` `./logNginxError` files
 * Some docs in ./admin/downloads.php
 
 ### Unable to test EFI64/32, my current hardware is decade old.
