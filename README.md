@@ -3,7 +3,7 @@ Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe o
 
 ..in an attempt to make the simplest pxe server ..in the world ..and to save myself from dd'ing
 
-*TESTING v0.0.1, not production ready/secure yet*
+*TESTING v0.0.1, not production ready/secure*
 
 ## Currently tftp/http pxe, only BIOS boot at this time is available
 * Tested and works with archlinux, clonezilla, ubuntu server
@@ -13,8 +13,18 @@ Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe o
 * TODO: Raspberry Pi boot
 * TODO: EFI64 & EFI32 boot + arch
 * TODO: iPXE & NFS(also need to see mounted iso-loop, maybe missing some opts)
+* debian(I suspect it might be the same as pi)/ubuntu setup files
 
-* TODO: Crowd fund for EFI64/32 +Raspberry pi 3 & 4 (decade old hardware)
+### Tested on 21/June/2021 on Raspberry Pi1 - Raspberry Pi OS Lite from [raspberrypi.org](https://www.raspberrypi.org/software/operating-systems/)
+
+ISO: [2021-05-07-raspios-buster-armhf-lite.zip](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip)
+
+sha256 zip file c5dad159a2775c687e9281b1a0e586f7471690ae28f2f2282c90e7d59f64273c
+
+Update OS: `sudo apt update && sudo apt upgrade -y && sudo apt install git` 
+Enable ssh: `sudo systemctl enable ssh && sudo systemctl start ssh`
+
+The rest can be done remotly
  
 ## Quick start
 * Setup manual IP address by hand or via dhcp::mac
@@ -47,12 +57,12 @@ Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe o
 * For realtime happenings run ./logDnsmasq ./logNginxAccess ./logNginxError etc files
 * Some docs in ./admin/downloads.php
 
+### Unable to test EFI64/32, my current hardware is decade old.
+### Crowd funding for Raspberry Pi4 and EFI64/32 https://ko-fi.com/ginsoholt
+
 ***
 This (is)was supposed the be part of https://github.com/soholt/Tango but..
 
 .. I also remember pxe booting G5, need to find the old scripts or magic options
 
 ***
-MORE TODO: clean reimage pi and run it fresh to veifry it works
-
-MORE TODO: debian(I suspect might be the same)/ubuntu setup files
