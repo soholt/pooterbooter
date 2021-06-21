@@ -17,7 +17,7 @@ sudo mkdir -p /srv/tftp/pxe/modules/efi64/pxelinux.cfg # EFI64
 
 # maybe later change to dnsmasq user for security
 echo "Change ownership of dnsmasq & tftp"
-sudo chown $USER:$USER -R /srv/$DNSMASQ_DIR
+sudo chown $USER:$USER -R $DNSMASQ_DIR
 sudo chown $USER:$USER -R /srv/tftp
 
 echo "Copy boot files"
@@ -29,6 +29,8 @@ cp -r /usr/lib/SYSLINUX.EFI/efi32/* /srv/tftp/pxe/modules/efi32
 cp -r /usr/lib/SYSLINUX.EFI/efi64/* /srv/tftp/pxe/modules/efi64
 
 ### Setup dnsmasq
+# stop dnsmasq, user will restart after editing
+sudo systemctl stop dnsmasq
 
 # Make a backup, as we are going to owerwrite it next
 sudo cp -n /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
@@ -53,7 +55,8 @@ sudo cp -n /etc/exports /etc/exports.bak # make backup
 sudo sh -c "echo '/srv/tftp/mnt *(ro,async,no_subtree_check,no_root_squash)' > /etc/exports"
 #(APPEND)echo "/srv/tftp/mnt *(ro,async,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
 
-# en & start svc
+# en & restart svc
+sudo systemctl restart nfs-kernel-server
 sudo exportfs -r
 
 ### Setup nginx
@@ -64,6 +67,9 @@ cat ./nginx/default > /etc/nginx/sites-available/default
 # Fix permissions
 sudo chown root:root /etc/nginx/sites-available/default
 # Fix everything
+
+# Restart nginx
+sudo systemctl restart nginx
 
 #old
 #sudo cp ./nginx/default /etc/nginx/sites-available/default
