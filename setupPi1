@@ -52,7 +52,7 @@ sudo sh -c "echo 'conf-file=$DNSMASQ_CONFIG' > /etc/dnsmasq.conf"
 sudo cp -n /etc/exports /etc/exports.bak # make backup
 
 # Update main config
-sudo sh -c "echo '/srv/tftp/mnt *(ro,async,no_subtree_check,no_root_squash)' > /etc/exports"
+sudo sh -c "echo '/srv/tftp/mnt *(ro,async,no_wdelay,insecure_locks,no_root_squash,no_subtree_check,insecure,crossmnt)' > /etc/exports"
 #(APPEND)echo "/srv/tftp/mnt *(ro,async,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
 
 # en & restart svc
