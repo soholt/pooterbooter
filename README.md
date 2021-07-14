@@ -1,3 +1,5 @@
+## v0.0.2 incoming any moment now
+
 # pooterbooter
 Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe others
 
