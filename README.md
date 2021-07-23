@@ -1,8 +1,5 @@
-## v0.0.2 incoming any moment now
-
 # pooterbooter
 Dnsmasq pxe tftp boot server from .iso files, via tftp/http/nfs/ipxe and maybe others
-
 ..in an attempt to make the simplest pxe server ..in the world ..and to save myself from dd'ing
 
 ## v0.0.2 (The best setup in my mind)
