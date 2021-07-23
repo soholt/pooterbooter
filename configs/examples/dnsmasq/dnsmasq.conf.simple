@@ -1,0 +1,17 @@
+#interface=ens8
+listen-address=192.168.0.10
+dhcp-range=192.168.0.50,192.168.0.150,2h
+
+#Force the address of the router (or DSL modem):
+#dhcp-range=vendor:PXEClient,192.168.0.81,192.168.0.91
+#dhcp-option=option:router,192.168.0.1
+
+enable-tftp
+tftp-root=/var/lib/tftpboot
+dhcp-boot=d-i/n-a/pxelinux.0
+
+dhcp-match=set:efi-x86_64,option:client-arch,7
+dhcp-boot=tag:efi-x86_64,d-i/n-a/bootnetx64.efi
+
+dhcp-match=set:ipxe,175
+dhcp-boot=tag:ipxe,d-i/n-a/boot.ipxe

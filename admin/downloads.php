@@ -3,16 +3,10 @@
  * © 2021 Gintaras Valatka https://github.com/soholt/
  */
 
+ require_once('config.php');
+
 $data['recipes'] = [
     'archlinux' => [
-        #'tftp' => [
-        #    'KERNEL' => '::' . '',
-        #    'INITRD' => '::' . '',
-        #    'APPEND' => '',
-        #],
-        'doc' => [
-            'https://wiki.archlinux.org/title/Preboot_Execution_Environment',
-        ],
         'dl' => [
             'downloads+mirrors' => 'https://archlinux.org/download/',
             //'dowloads netboot' => 'https://archlinux.org/releng/netboot/';
@@ -23,30 +17,13 @@ $data['recipes'] = [
         ],
     ],
     'clonezilla' => [
-        #'tftp' => [
-        #    'KERNEL' => '::' . '',
-        #    'INITRD' => '::' . '',
-        #    'APPEND' => '',
-        #],
-        'doc' => [
-            'https://clonezilla.org/livepxe.php'
-        ],
         'dl' => [
             'downloads' => 'https://clonezilla.org/downloads.php',
             'iso' => 'https://osdn.net/frs/redir.php?m=constant&f=clonezilla%2F75295%2Fclonezilla-live-2.7.2-39-amd64.iso',
             'iso sum' => 'https://clonezilla.org/downloads/stable/data/CHECKSUMS.TXT',
         ],
     ],
-    /*
     'debian' => [
-        'tftp' => [
-            'KERNEL' => '::' . '',
-            'INITRD' => '::' . '',
-            'APPEND' => '',
-        ],
-        'doc' => [
-            'https://wiki.debian.org/PXEBootInstall',
-        ],
         'dl' => [
             'Downloads' => 'https://www.debian.org/distrib/',
 
@@ -75,12 +52,6 @@ $data['recipes'] = [
         ],
     ],
     'fedora' => [
-        'tftp' => [
-            'KERNEL' => '::' . '',
-            'INITRD' => '::' . '',
-            'APPEND' => '',
-        ],
-        'doc' => ['https://docs.fedoraproject.org/en-US/fedora-coreos/live-booting-ipxe/'],
         'dl' => [
             'server 34 download_page' => 'https://getfedora.org/en/workstation/download/',
             'server 34 x86_64 direct_iso' => 'https://download.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-dvd-x86_64-34-1.2.iso',
@@ -92,16 +63,7 @@ $data['recipes'] = [
             'workstation 34 x86_64 direct_iso_sum' => 'https://getfedora.org/static/checksums/34/iso/Fedora-Workstation-34-1.2-x86_64-CHECKSUM',
         ],
     ],
-    */
     'ubuntu' => [
-        #'tftp' => [
-        #    'KERNEL' => '::' . '',
-        #    'INITRD' => '::' . '',
-        #    'APPEND' => '',
-        #],
-        'doc' => [
-            'https://discourse.ubuntu.com/t/netbooting-the-live-server-installer/14510',
-        ],
         'dl' => [
             //'netboot' => 'http://cdimage.ubuntu.com/netboot/',
             'server downloads' => 'https://ubuntu.com/download/server',
@@ -133,4 +95,24 @@ $data['recipes'] = [
             //'focal' => 'http://releases.ubuntu.com/focal/',
         ],
     ],
+    'win' => [
+        'dl' => [
+            'windows 10 32/64' => 'https://www.microsoft.com/en-gb/software-download/windows10ISO',
+        ],
+    ],
 ];
+
+require_once('html/head.php');
+require_once('html/menu.php');
+
+echo 'TODO redo<br />' . "\n";
+
+foreach($data['recipes'] as $dist => $val) {
+    echo '<h4>' . $dist . ':</h4>' . "\n<ul>\n";
+    foreach($val['dl'] as $type => $url) {
+        echo '<li>' . $type . ': <a href="' . $url . '">' . $url . "</a></li>\n";
+    }
+    echo "</ul>\n";
+}
+
+require_once('./html/foot.php');

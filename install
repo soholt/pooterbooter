@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#
+# Sudo behaviour https://wiki.debian.org/DebianInstall?action=show&redirect=DebianNetworkInstall#Post-Install_Tips
+#
+# If you set up a root password during install,
+# you will find your user without sudo privileges.
+# This is intended behaviour.
+# To enable sudo after a fresh install of Debian:
+#
+# $ su -l
+# adduser USERNAME sudo
+# exit
+#
+# Then, log out of the desktop environment and log in again. You can check the success of the above by entering
+#
+# $ groups
+#
+
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get install -y apt-cacher-ng auto-apt-proxy avahi-daemon avahi-utils dnsmasq git ipxe nfs-kernel-server nginx openssh-server pxelinux syslinux syslinux-efi grub-efi-amd64-bin grub-efi-amd64-signed shim-signed php-cli ufw
+
+sudo apt-get install -y di-netboot-assistant --no-install-recommends
+# Recommended packages: grub-efi-amd64-bin grub-efi-amd64-signed shim-signed
+
+#git clone https://github.com/soholt/pooterbooter && cd pooterbooter

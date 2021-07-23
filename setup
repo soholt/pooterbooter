@@ -1,0 +1,69 @@
+#!/bin/bash
+
+echo "Create required directories"
+sudo mkdir -p /srv/tftp/www/iso
+sudo mkdir -p /srv/tftp/www/mnt
+sudo mkdir -p /srv/tftp/www/ipxe
+sudo chown $USER:$USER -R /srv/tftp/www
+
+sudo mkdir -p /srv/tftp/pxe/modules/bios/pxelinux.cfg # BIOS
+sudo chown $USER:$USER -R /srv/tftp/pxe/modules/bios/pxelinux.cfg # make it writable
+
+sudo mkdir -p /srv/tftp/pxe/modules/efi32/pxelinux.cfg # EFI32
+sudo chown $USER:$USER -R /srv/tftp/pxe/modules/efi32/pxelinux.cfg
+
+sudo mkdir -p /srv/tftp/pxe/modules/efi64/pxelinux.cfg # EFI64
+sudo chown $USER:$USER -R /srv/tftp/pxe/modules/efi64/pxelinux.cfg
+
+sudo mkdir -p /srv/tftp/ipxe
+
+echo "Copy required boot files"
+sudo cp -r /usr/lib/ipxe/* /srv/tftp/ipxe
+sudo cp -r /usr/lib/syslinux/* /srv/tftp/pxe
+sudo cp -r /usr/lib/PXELINUX/* /srv/tftp/pxe/modules/bios
+sudo cp -r /usr/lib/SYSLINUX.EFI/efi32/* /srv/tftp/pxe/modules/efi32
+sudo cp -r /usr/lib/SYSLINUX.EFI/efi64/* /srv/tftp/pxe/modules/efi64
+
+
+# apt-cacher-ng
+sudo ufw allow 3142/tcp
+
+# avahi-bonjourno
+sudo ufw allow 5298
+sudo ufw allow 5353/udp
+
+# DNS
+sudo ufw allow 53
+
+# DHCP
+sudo ufw allow 69
+sudo ufw allow 67/udp
+# DHCP proxy
+sudo ufw allow 4011/udp
+
+# NFS
+sudo ufw allow 111
+sudo ufw allow 2049
+sudo ufw allow 20490
+
+# Admin
+sudo ufw allow 3000/tcp
+
+# ipxe
+sudo ufw allow 8080/tcp
+
+# ssh
+sudo ufw allow 22/tcp
+
+# Copy some di examples
+#if [ -d '/usr/share/doc/di-netboot-assistant/examples' ]; then
+#    if [ ! -d './configs/dnsmasq/examples' ]; then
+#        mkdir -p ./configs/dnsmasq/examples
+#        cp -r /usr/share/doc/di-netboot-assistant/examples/* ./configs/dnsmasq/examples
+#    fi
+#fi
+
+echo "---"
+echo "Setup DONE"
+echo "To enable the firewall by run: sudo ufw enable"
+echo "Mount disk or copy *.iso image files to /srv/tftp/mnt/iso"
